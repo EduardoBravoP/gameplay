@@ -9,23 +9,33 @@ import { styles } from "./styles";
 type Props = RectButtonProps & {
   title: string;
   icon: React.FC<SvgProps>;
+  hasCheckBox?: boolean;
   checked?: boolean;
 }
 
-export function Category({ title, icon: Icon, checked = false, ...rest }: Props) {
+export function Category({ 
+  title, 
+  icon: Icon, 
+  checked = false, 
+  hasCheckBox = false, 
+  ...rest 
+}: Props) {
   return (
     <RectButton {...rest}>
       <LinearGradient
         style={styles.container}
         colors={[theme.colors.secondary50, theme.colors.secondary70]}
       >
-       <View style={[styles.content, { opacity: checked ? 1 : 0.4 }]}>
-         <View style={checked ? styles.checked : styles.check} />
+        <LinearGradient 
+          style={[styles.content, { opacity: checked ? 1 : 0.5 }]}
+          colors={[ checked ? theme.colors.secondary75 : theme.colors.secondary50, theme.colors.secondary40 ]}
+        >
+          { hasCheckBox && <View style={checked ? styles.checked : styles.check} /> }
 
-         <Icon width={48} height={48} />
+          <Icon width={48} height={48} />
          
-         <Text style={styles.title}>{ title }</Text>
-       </View>
+          <Text style={styles.title}>{ title }</Text>
+       </LinearGradient>
       </LinearGradient>
     </RectButton>
   )
