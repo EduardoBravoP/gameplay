@@ -7,13 +7,8 @@ import { styles } from "./styles";
 import PlayerSvg from '../../assets/player.svg'
 import CalendarSvg from '../../assets/calendar.svg'
 import { theme } from "../../global/styles/theme";
-
-export type GuildProps = {
-  id: string,
-  name: string,
-  icon: null,
-  owner: boolean
-}
+import { GuildProps } from "../Guild";
+import { LinearGradient } from "expo-linear-gradient";
 
 export type AppointmentsProps = {
   id: string;
@@ -34,7 +29,12 @@ export function Appointment({ data, ...rest }: Props) {
   return (
     <RectButton {...rest}>
       <View style={styles.container}>
-        <GuildIcon />
+        <LinearGradient
+          style={styles.guildIconContainer}
+          colors={[theme.colors.secondary50, theme.colors.secondary70]}
+        >
+          <GuildIcon />
+        </LinearGradient>
 
         <View style={styles.content}>
           <View style={styles.header}>
